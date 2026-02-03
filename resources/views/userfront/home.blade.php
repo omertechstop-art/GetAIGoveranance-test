@@ -16,8 +16,8 @@
         </button>
     </div>
     
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold max-w-4xl text-center mx-auto mt-6 leading-tight px-4">
-        The AI governance <span class="text-blue-600">marketplace</span> for enterprise teams
+    <h1 class="font-berkshire text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-4xl text-center mx-auto mt-6 leading-tight px-4">
+        The AI governance <span class="font-berkshire text-blue-600">marketplace</span> for enterprise teams
     </h1>
 
     <p class="text-base md:text-lg mx-auto max-w-2xl text-center mt-4 text-gray-600 px-4">
