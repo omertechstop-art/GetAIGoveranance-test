@@ -4,66 +4,47 @@ use Livewire\Component;
 
 new class extends Component
 {
-    public $mobileMenuOpen = false;
-
-    public function toggleMobileMenu()
-    {
-        $this->mobileMenuOpen = !$this->mobileMenuOpen;
-    }
+    //
 };
 ?>
 
-<nav class="flex items-center justify-between p-4 md:px-16 lg:px-24 xl:px-32 md:py-6 w-full">
+<nav class="w-full py-4 md:py-6 fixed top-0 left-0 right-0 bg-white z-50 transition-transform duration-300" id="main-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between relative">
     <a href="{{ route('home') }}" wire:navigate class="flex items-center">
-        <div class="text-2xl font-bold text-gray-900">GetAIGovernance</div>
+        <img src="{{ asset('logo-check-check.png') }}" alt="GetAIGovernance" class="h-8 md:h-12 w-auto max-h-full">
     </a>
     
-    <div class="{{ $mobileMenuOpen ? 'max-md:w-full' : 'max-md:w-0' }} max-md:absolute max-md:top-0 max-md:left-0 max-md:transition-all max-md:duration-300 max-md:overflow-hidden max-md:h-full max-md:bg-white/95 max-md:backdrop-blur max-md:flex-col max-md:justify-center flex items-center gap-8 font-medium">
-        <a href="{{ route('home') }}" wire:navigate class="hover:text-gray-600 transition-colors">
+    <div class="hidden xl:flex items-center gap-8 font-futura absolute left-1/2 transform -translate-x-1/2">
+        <a href="{{ route('home') }}" class="hover:text-blue-600 transition-colors font-futura">
             Home
         </a>
-        <a href="{{ route('categories') }}" wire:navigate class="hover:text-gray-600 transition-colors">
-            Categories
+        
+        <a href="{{ route('categories') }}" class="hover:text-blue-600 transition-colors font-futura">
+            Marketplace
         </a>
-        <a href="{{ route('compare') }}" wire:navigate class="hover:text-gray-600 transition-colors">
-            Compare
-        </a>
-        <a href="{{ route('blog') }}" wire:navigate class="hover:text-gray-600 transition-colors">
-            Blog
-        </a>
-        <a href="{{ route('qa') }}" wire:navigate class="hover:text-gray-600 transition-colors">
+        
+        <!-- Categories Mega Menu -->
+        <livewire:mega-menu type="categories" title="Categories" />
+        
+        <!-- Resources Mega Menu -->
+        <livewire:mega-menu type="blog" title="Resources" />
+        
+        <a href="{{ route('qa') }}" class="hover:text-blue-600 transition-colors font-futura">
             Q&A
         </a>
-        <div class="md:hidden flex flex-col gap-3 mt-8">
-            <button class="border border-blue-300 hover:border-blue-400 text-blue-700 px-4 py-2 rounded-full text-sm font-medium transition">
-                Request Guidance
-            </button>
-            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-medium transition">
-                Add Your Tool
-            </button>
-        </div>
-        <button wire:click="toggleMobileMenu" class="md:hidden bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-md aspect-square font-medium transition mt-8">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 6 6 18" />
-                <path d="m6 6 12 12" />
-            </svg>
-        </button>
     </div>
     
-    <div class="hidden md:flex items-center gap-3">
-        <button class="border border-blue-300 hover:border-blue-400 text-blue-700 px-4 py-2 rounded-full text-sm font-medium transition">
-            Request Guidance
-        </button>
+    <div class="hidden xl:flex items-center gap-3">
         <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-medium transition">
             Add Your Tool
         </button>
     </div>
 
-    <button wire:click="toggleMobileMenu" class="md:hidden bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-md aspect-square font-medium transition">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 12h16" />
-            <path d="M4 18h16" />
-            <path d="M4 6h16" />
-        </svg>
-    </button>
+    <div @click="$dispatch('toggle-sidebar')" class="xl:hidden group flex h-12 w-12 cursor-pointer items-center justify-center rounded-xl bg-white p-2 hover:bg-slate-200">
+        <div class="space-y-1.5">
+            <span class="block h-0.5 w-6 origin-center rounded-full bg-black transition-transform ease-in-out"></span>
+            <span class="block h-0.5 w-5 origin-center rounded-full bg-blue-500 transition-transform ease-in-out"></span>
+        </div>
+    </div>
+    </div>
 </nav>

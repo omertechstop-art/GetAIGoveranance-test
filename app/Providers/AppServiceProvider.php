@@ -24,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
+        
+        \App\Models\Blog::observe(\App\Observers\BlogObserver::class);
     }
 
     protected function configureDefaults(): void
