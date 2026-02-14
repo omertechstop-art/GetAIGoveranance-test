@@ -18,7 +18,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /var/www/getaigovernance
-            sudo git pull origin main
+            sudo git fetch --all
+            sudo git reset --hard origin/main
             sudo composer install --no-interaction --prefer-dist --optimize-autoloader
             sudo npm install
             sudo npm run build
